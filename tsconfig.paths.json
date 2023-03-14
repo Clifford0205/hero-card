@@ -4,6 +4,7 @@
     "paths": {
       "SRC/*": [ "src/*" ],
       "COMPONENTS/*": [ "src/components/*" ],
+      "CONSTANTS/*": [ "src/constants/*" ],
       "ROUTES/*": [ "src/routes/*" ],
       "STORE/*": [ "src/store/*" ],
       "UTILS/*": [ "src/utils/*" ],
