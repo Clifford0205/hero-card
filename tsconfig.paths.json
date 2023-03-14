@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "SRC/*": [ "src/*" ],
+      "API/*": [ "src/api/*" ],
       "COMPONENTS/*": [ "src/components/*" ],
       "CONSTANTS/*": [ "src/constants/*" ],
       "ROUTES/*": [ "src/routes/*" ],
