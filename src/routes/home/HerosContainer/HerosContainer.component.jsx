@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { getHerosItems } from 'STORE/heros/heros.reducer';
 import HerosList from '../HerosList.component';
-import Hero from '../Hero.component';
+import Hero from '../HeroProfile/HeroProfile.component';
 import { StyledHerosContainer } from './HerosContainer.styles';
 
 const HerosContainer = () => {
@@ -17,7 +17,7 @@ const HerosContainer = () => {
 		<StyledHerosContainer>
 			<HerosList />
 			<Routes>
-				<Route path=':hero' element={<Hero />} />
+				<Route path=':heroId' element={<Hero />} />
 			</Routes>
 		</StyledHerosContainer>
 	);

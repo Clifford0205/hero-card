@@ -7,6 +7,13 @@ export function fetchHeros() {
 	});
 }
 
+export function fetchHeroProfile(heroId) {
+	return request({
+		url: `${heroId}/profile`,
+		method: 'get',
+	});
+}
+
 export default {
 	fetchHeros,
 };

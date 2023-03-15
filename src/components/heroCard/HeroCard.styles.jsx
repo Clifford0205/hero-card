@@ -1,19 +1,13 @@
 import { styled } from '@mui/material/styles';
 import isStyledPropsValid from 'UTILS/isStyledPropsValid';
 import { keyframes } from '@emotion/react';
+import { Link } from 'react-router-dom';
 
-export const NavigationContainer = styled('div', {
+export const HeroCardLink = styled(Link, {
 	shouldForwardProp: isStyledPropsValid,
 })(({ theme }) => ({
-	height: '70px',
-	width: '100%',
-	display: 'flex',
-	justifyContent: 'flex-end',
-	alignItems: 'center',
-	padding: theme.spacing(2),
-	backgroundColor: theme.customColors.primary[400],
-	position: 'relative',
-	zIndex: 1301,
+	textDecoration: 'none',
+	color: theme.customColors.grey[200],
 }));
 
 export const SpinnerOverlay = styled('div', {

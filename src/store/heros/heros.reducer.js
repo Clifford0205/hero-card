@@ -12,10 +12,8 @@ export const getHerosItems = createAsyncThunk(
 	async (_, { rejectWithValue }) => {
 		try {
 			const herosArray = await fetchHeros();
-			console.log('herosArray', herosArray);
 			return herosArray;
 		} catch (error) {
-			console.log('error: ', error);
 			return rejectWithValue(error);
 		}
 	},
@@ -38,7 +36,6 @@ export const herosSlice = createSlice({
 			state.heros = action.payload;
 		},
 		[getHerosItems.rejected]: (state, action) => {
-			console.log('action: ', action);
 			state.listIsLoading = false;
 			state.error = action.payload;
 		},
