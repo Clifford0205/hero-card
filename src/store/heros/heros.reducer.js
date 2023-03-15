@@ -3,7 +3,7 @@ import { fetchHeros } from 'SRC/api/heros';
 
 export const HEROS_INITIAL_STATE = {
 	heros: [],
-	isLoading: false,
+	listIsLoading: false,
 	error: null,
 };
 
@@ -31,15 +31,15 @@ export const herosSlice = createSlice({
 	},
 	extraReducers: {
 		[getHerosItems.pending]: (state) => {
-			state.isLoading = true;
+			state.listIsLoading = true;
 		},
 		[getHerosItems.fulfilled]: (state, action) => {
-			state.isLoading = false;
+			state.listIsLoading = false;
 			state.heros = action.payload;
 		},
 		[getHerosItems.rejected]: (state, action) => {
 			console.log('action: ', action);
-			state.isLoading = false;
+			state.listIsLoading = false;
 			state.error = action.payload;
 		},
 	},
