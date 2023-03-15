@@ -14,6 +14,21 @@ export function fetchHeroProfile(heroId) {
 	});
 }
 
+export function editProfile({ profile, heroId }) {
+	const config = {
+		data: {
+			...profile,
+		},
+	};
+	return request({
+		url: `${heroId}/profile`,
+		method: 'PATCH',
+		config,
+	});
+}
+
 export default {
 	fetchHeros,
+	fetchHeroProfile,
+	editProfile,
 };

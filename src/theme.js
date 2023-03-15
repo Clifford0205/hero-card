@@ -147,7 +147,7 @@ export const themeSettings = (mode) => {
 							main: colors.primary[500],
 						},
 						secondary: {
-							main: colors.greenAccent[500],
+							main: colors.greenAccent[700],
 						},
 						neutral: {
 							dark: colors.grey[700],
@@ -167,7 +167,7 @@ export const themeSettings = (mode) => {
 							main: colors.primary[100],
 						},
 						secondary: {
-							main: colors.greenAccent[500],
+							main: colors.greenAccent[700],
 						},
 						neutral: {
 							dark: colors.grey[700],
@@ -209,6 +209,11 @@ export const themeSettings = (mode) => {
 			h6: {
 				fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
 				fontSize: 14,
+			},
+			alert: {
+				fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
+				fontSize: 16,
+				color: colors.redAccent[600],
 			},
 		},
 		customColors: {
