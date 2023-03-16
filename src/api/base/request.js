@@ -44,6 +44,6 @@ export default ({ method, url, config = {} }) => {
 
 			debounceErrorAlert();
 
-			return error;
+			throw new Error(error);
 		});
 };

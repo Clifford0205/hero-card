@@ -43,7 +43,7 @@ const Navigation = () => {
 				<List>
 					<ListItem disablePadding>
 						<ListItemButton onClick={toggleColorMode}>
-							<ListItemIcon sx={{ 'min-width': '35px' }}>
+							<ListItemIcon sx={{ minWidth: '35px' }}>
 								{theme.palette.mode === 'dark' ? (
 									<LightModeOutlinedIcon />
 								) : (

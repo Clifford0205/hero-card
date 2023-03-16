@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+import { Box, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash-es';
 import { useSelector } from 'react-redux';
-import { isEmpty } from 'lodash-es';
+import { isEmpty, isEqual } from 'lodash-es';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { selectHeros, selectListIsLoading } from 'STORE/heros/heros.selector';
 import {
@@ -21,12 +24,26 @@ import useHeroProfile from 'SRC/hooks/useHeroProfile.hooks';
 import { editProfile } from 'SRC/api/heros';
 
 const HeroProfile = () => {
+	const originProfileSet = useRef(false);
+	const theme = useTheme();
 	const herosList = useSelector(selectHeros);
 	const { heroId } = useParams();
-	const [errorHint, setErrorHint] = useState(false);
-
 	const heroProfile = useHeroProfile();
 	const { profile, point, increase, decrease } = heroProfile;
+
+	const [errorHint, setErrorHint] = useState(false);
+	const [originProfile, setOriginProfile] = useState(profile);
+
+	useEffect(() => {
+		originProfileSet.current = false;
+	}, [heroId]);
+
+	useEffect(() => {
+		if (!isEmpty(profile) && originProfileSet.current === false) {
+			setOriginProfile(profile);
+			originProfileSet.current = true;
+		}
+	}, [profile]);
 
 	const handleEdit = debounce(async () => {
 		if (point > 0) {
@@ -34,10 +51,12 @@ const HeroProfile = () => {
 			return;
 		}
 		setErrorHint(false);
-		await editProfile({ heroId, profile });
+		const res = await editProfile({ heroId, profile });
+		if (res === 'OK') {
+			setOriginProfile(profile);
+			toast.success('修改成功!');
+		}
 	}, 300);
-	console.log('herosList', herosList);
-	console.log('profile: ', profile);
 
 	return (
 		<>
@@ -77,7 +96,12 @@ const HeroProfile = () => {
 											</Typography>
 										)}
 
-										<StyledSaveBtn color='secondary' variant='contained' onClick={handleEdit}>
+										<StyledSaveBtn
+											disabled={isEqual(profile, originProfile)}
+											color='secondary'
+											variant='contained'
+											onClick={handleEdit}
+										>
 											儲存
 										</StyledSaveBtn>
 									</Box>
@@ -85,6 +109,7 @@ const HeroProfile = () => {
 							</StyledSaveArea>
 						</Grid>
 					</StyledHeroProfile>
+					<ToastContainer position='top-center' theme={theme.palette.mode} />
 				</HeroContext.Provider>
 			)}
 		</>

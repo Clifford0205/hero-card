@@ -10,9 +10,9 @@ export const HeroCardContainer = styled(Card, {
 	shouldForwardProp: isStyledPropsValid,
 })(({ theme, isActive }) => ({
 	...(isActive && {
-		backgroundColor: theme.customColors.redAccent[800],
+		backgroundColor: theme.customColors.redAccent[900],
 		boxShadow:
-			'0px 7px 7px 7px rgba(0,0,0,0.6), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);',
+			'0px 7px 7px 7px rgba(0,0,0,0.4), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);',
 	}),
 }));
 

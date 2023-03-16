@@ -1,5 +1,5 @@
 import { useState, useReducer, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { createAction } from 'UTILS/reducer.utils';
 import { fetchHeroProfile } from 'SRC/api/heros';
@@ -47,6 +47,7 @@ const heroReducer = (state, action) => {
 
 const useHeroProfile = () => {
 	const { heroId } = useParams();
+	const navigate = useNavigate();
 	const [isLoading, setLoading] = useState(false);
 
 	const [{ profile, point }, dispatch] = useReducer(heroReducer, INITIAL_STATE);
@@ -55,8 +56,15 @@ const useHeroProfile = () => {
 		try {
 			setLoading(true);
 			const profile = await fetchHeroProfile(heroId);
+			if (!profile) {
+				setTimeout(() => {
+					initProfile();
+				}, 0);
+				return;
+			}
 			dispatch(createAction(HERO_ACTION_TYPE.INIT_HERO_PROFILE, profile));
 		} catch (error) {
+			navigate('/');
 			throw new Error(error);
 		} finally {
 			setLoading(false);
