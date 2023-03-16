@@ -3,7 +3,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Box } from '@mui/material';
 
 import Navigation from 'SRC/components/navigation/Navigation.component';
-import HerosContainer from 'SRC/routes/home/HerosContainer/HerosContainer.component';
+import HerosContainer from 'SRC/routes/Heros/HerosContainer.component';
 import ColorModeContext from 'CONTEXTS/colorMode.context';
 import useColorMode from 'HOOKS/useColorMode.hooks';
 

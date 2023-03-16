@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { getHerosItems } from 'STORE/heros/heros.reducer';
-import HerosList from '../HerosList.component';
-import HeroProfile from '../HeroProfile/HeroProfile.component';
+import HerosList from 'COMPONENTS/herosList/HerosList.component';
+import HeroProfile from './HeroProfile/HeroProfile.component';
 import { StyledHerosContainer } from './HerosContainer.styles';
 
 const HerosContainer = () => {

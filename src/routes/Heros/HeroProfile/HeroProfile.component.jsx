@@ -11,7 +11,7 @@ import { isEmpty, isEqual } from 'lodash-es';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
-import { selectHeros, selectListIsLoading } from 'STORE/heros/heros.selector';
+import { selectHeros } from 'STORE/heros/heros.selector';
 import {
 	StyledHeroProfile,
 	StyledCounterArea,
@@ -19,9 +19,9 @@ import {
 	StyledAbilityArea,
 	StyledSaveArea,
 } from './HeroProfile.styles';
-import HeroContext from 'SRC/contexts/hero.context';
-import useHeroProfile from 'SRC/hooks/useHeroProfile.hooks';
-import { editProfile } from 'SRC/api/heros';
+import HeroContext from 'CONTEXTS/hero.context';
+import useHeroProfile from 'HOOKS/useHeroProfile.hooks';
+import { editProfile } from 'API/heros';
 
 const HeroProfile = () => {
 	const originProfileSet = useRef(false);

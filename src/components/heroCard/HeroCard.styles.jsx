@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
 import isStyledPropsValid from 'UTILS/isStyledPropsValid';
-import { keyframes } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { createTheme } from '@mui/material/styles';
-import { themeSettings, tokens } from 'SRC/theme';
+import { themeSettings } from 'SRC/theme';
 
 const useColorMode = () => {
 	const [mode, setMode] = useState('dark');

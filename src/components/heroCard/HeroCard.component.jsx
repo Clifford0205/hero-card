@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 import { HeroCardContainer, HeroCardLink, HeroCardImage, HeroCardContent } from './HeroCard.styles';
