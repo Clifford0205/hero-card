@@ -1,4 +1,3 @@
-// color design tokens export
 export const tokens = (mode) => ({
 	...(mode === 'dark'
 		? {

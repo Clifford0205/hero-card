@@ -1,4 +1,4 @@
-import blackListProps from 'CONSTANTS/blackListProps';
+import blackListProps from 'SRC/utils/blackListProps';
 
 const isStyledPropsValid = (props) => !blackListProps[props];
 

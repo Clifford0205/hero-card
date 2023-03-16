@@ -42,6 +42,4 @@ export const herosSlice = createSlice({
 	},
 });
 
-// export const { getCategoryItems } = herosSlice.actions;
-
 export const herosReducer = herosSlice.reducer;
