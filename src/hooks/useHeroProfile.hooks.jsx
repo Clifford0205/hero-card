@@ -1,4 +1,4 @@
-import { useState, useReducer, useEffect } from 'react';
+import { useState, useReducer, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { createAction } from 'UTILS/reducer.utils';
@@ -51,7 +51,7 @@ const useHeroProfile = () => {
 
 	const [{ profile, point }, dispatch] = useReducer(heroReducer, INITIAL_STATE);
 
-	const initProfile = async () => {
+	const initProfile = useCallback(async () => {
 		try {
 			setLoading(true);
 			const profile = await fetchHeroProfile(heroId);
@@ -61,43 +61,53 @@ const useHeroProfile = () => {
 		} finally {
 			setLoading(false);
 		}
-	};
+	}, [heroId, profile]);
 
 	useEffect(() => {
 		initProfile();
 	}, [heroId]);
 
-	const updateProfile = (newProfile) => {
-		const oldProfilePoint = Object.values(profile).reduce(
-			(total, abilityPoint) => total + abilityPoint,
-			0,
-		);
-		const newProfilePoint = Object.values(newProfile).reduce(
-			(total, abilityPoint) => total + abilityPoint,
-			0,
-		);
-		const lastPoint = oldProfilePoint - newProfilePoint + point;
-		const payload = {
-			profile: newProfile,
-			point: lastPoint,
-		};
-		dispatch(createAction(HERO_ACTION_TYPE.SET_HERO_PROFILE, payload));
-	};
+	const updateProfile = useCallback(
+		(newProfile) => {
+			const oldProfilePoint = Object.values(profile).reduce(
+				(total, abilityPoint) => total + abilityPoint,
+				0,
+			);
+			const newProfilePoint = Object.values(newProfile).reduce(
+				(total, abilityPoint) => total + abilityPoint,
+				0,
+			);
+			const lastPoint = oldProfilePoint - newProfilePoint + point;
+			const payload = {
+				profile: newProfile,
+				point: lastPoint,
+			};
+			dispatch(createAction(HERO_ACTION_TYPE.SET_HERO_PROFILE, payload));
+		},
+		[profile, point],
+	);
 
-	const increase = (ability) => {
-		if (point < 1) {
-			return;
-		}
-		const newProfile = handleIncrease(profile, ability);
-		updateProfile(newProfile);
-	};
-	const decrease = (ability) => {
-		if (profile[ability] < 1) {
-			return;
-		}
-		const newProfile = handleDecrease(profile, ability);
-		updateProfile(newProfile);
-	};
+	const increase = useCallback(
+		(ability) => {
+			if (point < 1) {
+				return;
+			}
+			const newProfile = handleIncrease(profile, ability);
+			updateProfile(newProfile);
+		},
+		[profile, point],
+	);
+
+	const decrease = useCallback(
+		(ability) => {
+			if (profile[ability] < 1) {
+				return;
+			}
+			const newProfile = handleDecrease(profile, ability);
+			updateProfile(newProfile);
+		},
+		[profile],
+	);
 
 	return {
 		profile,

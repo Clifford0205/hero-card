@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 import { themeSettings, tokens } from 'SRC/theme';
 
 const useColorMode = () => {
-	const [mode, setMode] = useState('light');
+	const [mode, setMode] = useState('dark');
 
 	const colorModeHooksValue = useMemo(
 		() => ({

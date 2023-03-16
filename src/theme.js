@@ -158,7 +158,7 @@ export const themeSettings = (mode) => {
 							main: colors.blueAccent[600],
 						},
 						background: {
-							default: colors.primary[500],
+							default: colors.primary[400],
 						},
 				  }
 				: {
@@ -179,7 +179,7 @@ export const themeSettings = (mode) => {
 						},
 
 						background: {
-							default: '#fcfcfc',
+							default: colors.primary[400],
 						},
 				  }),
 		},

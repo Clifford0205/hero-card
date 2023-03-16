@@ -1,3 +1,5 @@
-const blackListProps = {};
+const blackListProps = {
+	isActive: true,
+};
 
 export default blackListProps;

@@ -2,39 +2,47 @@ import { styled } from '@mui/material/styles';
 import isStyledPropsValid from 'UTILS/isStyledPropsValid';
 import { keyframes } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+
+export const HeroCardContainer = styled(Card, {
+	shouldForwardProp: isStyledPropsValid,
+})(({ theme, isActive }) => ({
+	...(isActive && {
+		backgroundColor: theme.customColors.redAccent[800],
+		boxShadow:
+			'0px 7px 7px 7px rgba(0,0,0,0.6), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);',
+	}),
+}));
 
 export const HeroCardLink = styled(Link, {
 	shouldForwardProp: isStyledPropsValid,
 })(({ theme }) => ({
 	textDecoration: 'none',
 	color: theme.customColors.grey[200],
-}));
-
-export const SpinnerOverlay = styled('div', {
-	shouldForwardProp: isStyledPropsValid,
-})(() => ({
-	height: '60vh',
-	width: '100%',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-}));
-
-const spin = keyframes({
-	to: {
-		WebkitTransform: 'rotate(360deg)',
+	[theme.breakpoints.down('sm')]: {
+		display: 'flex',
 	},
-});
+}));
 
-export const SpinnerContainer = styled('div', {
+export const HeroCardContent = styled(CardContent, {
 	shouldForwardProp: isStyledPropsValid,
 })(({ theme }) => ({
-	display: 'inline-block',
-	width: '50px',
-	height: '50px',
-	border: `3px solid ${theme.customColors.spin.border}`,
-	borderRadius: '50%',
-	borderTopColor: theme.customColors.spin.borderTop,
-	animation: `${spin} 1s ease-in-out infinite`,
-	WebkitAnimation: `${spin} 1s ease-in-out infinite`,
+	padding: theme.spacing(2),
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	flexGrow: 1,
+	'&:last-child': {
+		paddingBottom: theme.spacing(2),
+	},
+}));
+
+export const HeroCardImage = styled(CardMedia, {
+	shouldForwardProp: isStyledPropsValid,
+})(({ theme }) => ({
+	[theme.breakpoints.down('sm')]: {
+		maxWidth: '250px',
+	},
 }));

@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import isStyledPropsValid from 'UTILS/isStyledPropsValid';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 export const StyledHeroProfile = styled('div', {
 	shouldForwardProp: isStyledPropsValid,
@@ -26,4 +27,22 @@ export const StyledSaveBtn = styled(Button, {
 })(({ theme }) => ({
 	marginTop: theme.spacing(2),
 	width: '200px',
+}));
+
+export const StyledAbilityArea = styled(Grid, {
+	shouldForwardProp: isStyledPropsValid,
+})(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'center',
+	[theme.breakpoints.down('sm')]: {
+		justifyContent: 'center',
+	},
+}));
+
+export const StyledSaveArea = styled(Grid, {
+	shouldForwardProp: isStyledPropsValid,
+})(({ theme }) => ({
+	[theme.breakpoints.down('sm')]: {
+		justifyContent: 'center',
+	},
 }));

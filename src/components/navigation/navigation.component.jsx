@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useContext } from 'react';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -22,9 +22,9 @@ const Navigation = () => {
 	const { toggleColorMode } = useContext(ColorModeContext);
 	const [openDrawer, setOpenDrawer] = useState(false);
 
-	const handleOpenDrawer = () => {
+	const handleOpenDrawer = useCallback(() => {
 		setOpenDrawer(!openDrawer);
-	};
+	}, []);
 
 	const renderDrawer = () => (
 		<>
@@ -45,12 +45,12 @@ const Navigation = () => {
 						<ListItemButton onClick={toggleColorMode}>
 							<ListItemIcon sx={{ 'min-width': '35px' }}>
 								{theme.palette.mode === 'dark' ? (
-									<DarkModeOutlinedIcon />
-								) : (
 									<LightModeOutlinedIcon />
+								) : (
+									<DarkModeOutlinedIcon />
 								)}
 							</ListItemIcon>
-							<ListItemText primary={theme.palette.mode === 'dark' ? 'Dark mode' : 'Light mode'} />
+							<ListItemText primary={theme.palette.mode === 'dark' ? 'Light mode' : 'Dark mode'} />
 						</ListItemButton>
 					</ListItem>
 				</List>
@@ -67,7 +67,7 @@ const Navigation = () => {
 	const renderTabs = () => (
 		<Box>
 			<IconButton onClick={toggleColorMode}>
-				{theme.palette.mode === 'dark' ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
+				{theme.palette.mode === 'dark' ? <LightModeOutlinedIcon /> : <DarkModeOutlinedIcon />}
 			</IconButton>
 		</Box>
 	);

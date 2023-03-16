@@ -10,7 +10,7 @@ export const NavigationContainer = styled('div', {
 	justifyContent: 'flex-end',
 	alignItems: 'center',
 	padding: theme.spacing(2),
-	backgroundColor: theme.customColors.primary[400],
+	backgroundColor: theme.customColors.grey[900],
 	position: 'relative',
 	zIndex: 1301,
 }));

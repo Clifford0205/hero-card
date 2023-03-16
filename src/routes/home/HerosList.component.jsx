@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash-es';
+import { Outlet } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 
@@ -16,21 +17,17 @@ const HerosList = () => {
 			{isLoading ? (
 				<Spinner />
 			) : (
-				<Grid container spacing={8}>
-					{!isEmpty(herosList) &&
-						herosList.map((hero) => (
-							<Grid
-								xs={12}
-								sm={6}
-								md={3}
-								sx={{ display: 'flex', justifyContent: 'center' }}
-								item
-								key={hero.id}
-							>
-								<HeroCard hero={hero} />
-							</Grid>
-						))}
-				</Grid>
+				<>
+					<Grid container rowSpacing={{ xs: 5 }} columnSpacing={{ xs: 5, sm: 15, md: 20 }}>
+						{!isEmpty(herosList) &&
+							herosList.map((hero) => (
+								<Grid xs={12} sm={6} md={3} item key={hero.id}>
+									<HeroCard hero={hero} />
+								</Grid>
+							))}
+					</Grid>
+					<Outlet />
+				</>
 			)}
 		</>
 	);
