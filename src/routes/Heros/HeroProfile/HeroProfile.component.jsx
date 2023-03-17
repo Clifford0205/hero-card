@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -8,8 +8,6 @@ import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash-es';
 import { useSelector } from 'react-redux';
 import { isEmpty, isEqual } from 'lodash-es';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
 
 import { selectHeros } from 'STORE/heros/heros.selector';
 import {
@@ -22,14 +20,15 @@ import {
 import HeroContext from 'CONTEXTS/hero.context';
 import useHeroProfile from 'HOOKS/useHeroProfile.hooks';
 import { editProfile } from 'API/heros';
+import ToastContext from 'CONTEXTS/toast.context';
 
 const HeroProfile = () => {
 	const originProfileSet = useRef(false);
-	const theme = useTheme();
 	const herosList = useSelector(selectHeros);
 	const { heroId } = useParams();
 	const heroProfile = useHeroProfile();
 	const { profile, point, increase, decrease } = heroProfile;
+	const { handleToast } = useContext(ToastContext);
 
 	const [errorHint, setErrorHint] = useState(false);
 	const [originProfile, setOriginProfile] = useState(profile);
@@ -54,7 +53,7 @@ const HeroProfile = () => {
 		const res = await editProfile({ heroId, profile });
 		if (res === 'OK') {
 			setOriginProfile(profile);
-			toast.success('修改成功!');
+			handleToast('success', '修改成功');
 		}
 	}, 300);
 
@@ -64,10 +63,15 @@ const HeroProfile = () => {
 				<HeroContext.Provider value={heroProfile}>
 					<StyledHeroProfile>
 						<Grid container spacing={2}>
-							<StyledAbilityArea item xs={12} sm={6}>
-								<div>
+							<StyledAbilityArea item xs={12} md={6}>
+								<Box
+									display='flex'
+									flexDirection='column'
+									justifyContent='space-between'
+									minHeight='180px'
+								>
 									{Object.keys(profile).map((ability) => (
-										<Box marginBottom='10px' key={ability} display='flex'>
+										<Box key={ability} display='flex'>
 											<Typography variant='h3' sx={{ width: '30px' }}>
 												{ability}
 											</Typography>
@@ -84,11 +88,13 @@ const HeroProfile = () => {
 											</StyledCounterArea>
 										</Box>
 									))}
-								</div>
+								</Box>
 							</StyledAbilityArea>
-							<StyledSaveArea item xs={12} sm={6} display='flex'>
+							<StyledSaveArea item xs={12} md={6} display='flex'>
 								<Box display='flex' flexDirection='column'>
-									<Typography variant='h2'>剩餘點數:{point}</Typography>
+									<Typography fontWeight='bold' variant='h2'>
+										剩餘點數:{point}
+									</Typography>
 									<Box mt='auto'>
 										{errorHint && (
 											<Typography variant='alert' component='h4'>
@@ -98,9 +104,10 @@ const HeroProfile = () => {
 
 										<StyledSaveBtn
 											disabled={isEqual(profile, originProfile)}
-											color='secondary'
+											color='greyBtn'
 											variant='contained'
 											onClick={handleEdit}
+											mode='dark'
 										>
 											儲存
 										</StyledSaveBtn>
@@ -109,7 +116,6 @@ const HeroProfile = () => {
 							</StyledSaveArea>
 						</Grid>
 					</StyledHeroProfile>
-					<ToastContainer position='top-center' theme={theme.palette.mode} />
 				</HeroContext.Provider>
 			)}
 		</>

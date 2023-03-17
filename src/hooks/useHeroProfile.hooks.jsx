@@ -1,8 +1,9 @@
-import { useState, useReducer, useEffect, useCallback } from 'react';
+import { useState, useReducer, useEffect, useCallback, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { createAction } from 'UTILS/reducer.utils';
 import { fetchHeroProfile } from 'SRC/api/heros';
+import ToastContext from 'CONTEXTS/toast.context';
 
 const handleIncrease = (profile, ability) => {
 	const newProfile = { ...profile, [ability]: profile[ability] + 1 };
@@ -48,6 +49,7 @@ const heroReducer = (state, action) => {
 const useHeroProfile = () => {
 	const { heroId } = useParams();
 	const navigate = useNavigate();
+	const { handleToast } = useContext(ToastContext);
 	const [isLoading, setLoading] = useState(false);
 
 	const [{ profile, point }, dispatch] = useReducer(heroReducer, INITIAL_STATE);
@@ -65,7 +67,7 @@ const useHeroProfile = () => {
 			dispatch(createAction(HERO_ACTION_TYPE.INIT_HERO_PROFILE, profile));
 		} catch (error) {
 			navigate('/');
-			throw new Error(error);
+			handleToast('error', '返回資料有誤');
 		} finally {
 			setLoading(false);
 		}

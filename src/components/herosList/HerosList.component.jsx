@@ -18,10 +18,10 @@ const HerosList = () => {
 				<Spinner />
 			) : (
 				<>
-					<Grid container rowSpacing={{ xs: 5 }} columnSpacing={{ xs: 5, sm: 15, md: 20 }}>
+					<Grid container rowSpacing={{ xs: 5 }} columnSpacing={{ xs: 5, sm: 15, md: 10, lg: 5 }}>
 						{!isEmpty(herosList) &&
 							herosList.map((hero) => (
-								<Grid xs={12} sm={6} md={3} item key={hero.id}>
+								<Grid xs={12} md={6} lg={3} item key={hero.id}>
 									<HeroCard hero={hero} />
 								</Grid>
 							))}

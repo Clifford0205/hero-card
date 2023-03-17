@@ -26,7 +26,7 @@ export const StyledSaveBtn = styled(Button, {
 	shouldForwardProp: isStyledPropsValid,
 })(({ theme }) => ({
 	marginTop: theme.spacing(2),
-	width: '200px',
+	width: '214px',
 }));
 
 export const StyledAbilityArea = styled(Grid, {
@@ -34,7 +34,7 @@ export const StyledAbilityArea = styled(Grid, {
 })(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
-	[theme.breakpoints.down('sm')]: {
+	[theme.breakpoints.down('md')]: {
 		justifyContent: 'center',
 	},
 }));
@@ -42,7 +42,7 @@ export const StyledAbilityArea = styled(Grid, {
 export const StyledSaveArea = styled(Grid, {
 	shouldForwardProp: isStyledPropsValid,
 })(({ theme }) => ({
-	[theme.breakpoints.down('sm')]: {
+	[theme.breakpoints.down('md')]: {
 		justifyContent: 'center',
 	},
 }));

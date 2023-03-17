@@ -35,7 +35,7 @@ const Navigation = () => {
 				onOpen={() => setOpenDrawer(true)}
 				PaperProps={{
 					sx: {
-						width: 360,
+						width: 230,
 					},
 				}}
 			>

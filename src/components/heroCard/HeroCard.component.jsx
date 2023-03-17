@@ -13,7 +13,7 @@ const HeroCard = ({ hero }) => {
 			<HeroCardLink to={id}>
 				<HeroCardImage component='img' image={image} alt={name} />
 				<HeroCardContent>
-					<Typography variant='h5' component='div'>
+					<Typography variant='cardTitle' component='div'>
 						{name}
 					</Typography>
 				</HeroCardContent>

@@ -132,7 +132,7 @@ export const themeSettings = (mode) => {
 			values: {
 				xs: 0,
 				sm: 768,
-				md: 900,
+				md: 980,
 				lg: 1200,
 				xl: 1536,
 			},
@@ -154,10 +154,13 @@ export const themeSettings = (mode) => {
 							light: colors.grey[100],
 						},
 						info: {
-							main: colors.blueAccent[600],
+							main: colors.blueAccent[800],
 						},
 						background: {
 							default: colors.primary[400],
+						},
+						greyBtn: {
+							main: colors.grey[700],
 						},
 				  }
 				: {
@@ -174,11 +177,14 @@ export const themeSettings = (mode) => {
 							light: colors.grey[100],
 						},
 						info: {
-							main: colors.blueAccent[300],
+							main: colors.blueAccent[800],
 						},
 
 						background: {
 							default: colors.primary[400],
+						},
+						greyBtn: {
+							main: colors.grey[700],
 						},
 				  }),
 		},
@@ -208,6 +214,11 @@ export const themeSettings = (mode) => {
 			h6: {
 				fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
 				fontSize: 14,
+			},
+			cardTitle: {
+				fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
+				fontSize: 20,
+				fontWeight: 'Bold',
 			},
 			alert: {
 				fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),

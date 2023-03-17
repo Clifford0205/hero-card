@@ -20,7 +20,7 @@ export const HeroCardLink = styled(Link, {
 })(({ theme }) => ({
 	textDecoration: 'none',
 	color: theme.customColors.grey[200],
-	[theme.breakpoints.down('sm')]: {
+	[theme.breakpoints.down('md')]: {
 		display: 'flex',
 	},
 }));
@@ -41,7 +41,10 @@ export const HeroCardContent = styled(CardContent, {
 export const HeroCardImage = styled(CardMedia, {
 	shouldForwardProp: isStyledPropsValid,
 })(({ theme }) => ({
+	[theme.breakpoints.down('md')]: {
+		maxWidth: '150px',
+	},
 	[theme.breakpoints.down('sm')]: {
-		maxWidth: '250px',
+		maxWidth: '150px',
 	},
 }));

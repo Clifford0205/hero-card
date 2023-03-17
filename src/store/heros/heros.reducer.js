@@ -9,11 +9,12 @@ export const HEROS_INITIAL_STATE = {
 
 export const getHerosItems = createAsyncThunk(
 	'heros/getHerosItems',
-	async (_, { rejectWithValue }) => {
+	async ({ errCb }, { rejectWithValue }) => {
 		try {
 			const herosArray = await fetchHeros();
 			return herosArray;
 		} catch (error) {
+			errCb();
 			return rejectWithValue(error);
 		}
 	},
@@ -22,11 +23,6 @@ export const getHerosItems = createAsyncThunk(
 export const herosSlice = createSlice({
 	name: 'heros',
 	initialState: HEROS_INITIAL_STATE,
-	reducers: {
-		setCategories(state, action) {
-			state.categories = action.payload;
-		},
-	},
 	extraReducers: {
 		[getHerosItems.pending]: (state) => {
 			state.listIsLoading = true;

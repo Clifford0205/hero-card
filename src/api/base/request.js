@@ -42,8 +42,6 @@ export default ({ method, url, config = {} }) => {
 		.catch((error) => {
 			unset(apiStatus, url);
 
-			debounceErrorAlert();
-
 			throw new Error(error);
 		});
 };
