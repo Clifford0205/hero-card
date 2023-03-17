@@ -107,7 +107,6 @@ const HeroProfile = () => {
 											color='greyBtn'
 											variant='contained'
 											onClick={handleEdit}
-											mode='dark'
 										>
 											儲存
 										</StyledSaveBtn>
