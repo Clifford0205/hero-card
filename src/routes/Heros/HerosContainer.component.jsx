@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { getHerosItems } from 'STORE/heros/heros.reducer';
@@ -19,6 +19,7 @@ const HerosContainer = () => {
 		<StyledHerosContainer>
 			<Routes>
 				<Route path='/' element={<HerosList />}>
+					<Route path='*' element={<Navigate to='/heros' />} />
 					<Route path=':heroId' element={<HeroProfile />} />
 				</Route>
 			</Routes>
