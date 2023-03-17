@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Hero card
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Clifford 的作業
 
-## Available Scripts
+## Run Locally
 
-In the project directory, you can run:
+Clone the project
 
-### `npm start`
+```bash
+  git clone https://github.com/Clifford0205/hero-card.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Go to the project directory
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+  cd hero-card
+```
 
-### `npm test`
+Install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+  npm install
+```
 
-### `npm run build`
+OR
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+   yarn
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Start the server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm run start or yarn start
+```
 
-### `npm run eject`
+OR
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+  yarn start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 專案的架構
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- routes 裡面擺所有的頁面,只有一個 Heros 和其子路徑 Heros Profile
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 非路徑相關 component 擺到 components 資料夾
 
-## Learn More
+- api 統一在 api 資料夾管理,以檔案名稱區分 api 的功能
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- hooks 統一在 hooks 資料夾管理,以檔案名稱區分 hooks 的功能
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- context 統一在 context 資料夾管理,以檔案名稱區分 context 的功能
 
-### Code Splitting
+- Redux 的全域變數放在 store 當中,以資料夾名稱區分
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 使用第三方的 library
 
-### Analyzing the Bundle Size
+- material-ui:好用的 ui library,支援 styled component,可導入 theme 的顏色或是各種參數設定
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- axios:方便打 api 以及好管理的工具
 
-### Making a Progressive Web App
+- react-app-rewired:設定專案的 path alias 讓開發時不用一直點點點去掉用元件
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- lodash-es:好用的函式庫,處理各種判斷邏輯,與一般 lodash 相比是打包更輕量化
 
-### Advanced Configuration
+- redux-toolkit:redux 官方推薦的 library,可把 reducer,action,type 統一整理成一段 加速快發
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- redux-logger:設定在 redux middleWare 中,當改變 redux 的時候 會把 redux 的值 console 出來,大型專案不建議使用
 
-### Deployment
+- reselect:redux 的 memory 好幫手,當 redux 更新不相關的 state,其他的 state 可以記住原本物件的指向
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- react-toastify:跳提示的小工具
 
-### `npm run build` fails to minify
+## 程式碼註解原則
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+通常變數的命名或邏輯太過複雜或是過度冗長的部分我才會下註解，這樣要求自己變數命名或寫邏輯時一定要仔細想過。
+此專案只有在 material-ui 的 theme.js 小小註解一下顏色的參數的設定。
+
+## 遇到的困難
+
+在設定能力值的時候，連動的點數讓我有點苦惱，一開始想拆成兩個 state，一個控制能力，一個控制剩餘點數，但在改變值的時候，我並不想用 useEffect 或是一個 function 裡面連續寫兩個 set 這種方式，最後我決定在 context 裡面用 reducer 使用 payload 直接替換掉一整組運算出來的成果去達到。
