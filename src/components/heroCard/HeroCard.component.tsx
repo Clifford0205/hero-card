@@ -1,11 +1,21 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
+
+// import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
 import Typography from '@mui/material/Typography';
 
 import { HeroCardContainer, HeroCardLink, HeroCardImage, HeroCardContent } from './HeroCard.styles';
 
-const HeroCard = ({ hero }) => {
+export type HeroCardProps = {
+	hero: {
+		id: string;
+		name: string;
+		image: string;
+	};
+};
+
+const HeroCard: FC<HeroCardProps> = ({ hero }) => {
 	const { heroId } = useParams();
 	const { image, name, id } = hero;
 	return (
@@ -22,19 +32,19 @@ const HeroCard = ({ hero }) => {
 	);
 };
 
-HeroCard.propTypes = {
-	hero: PropTypes.shape({
-		name: PropTypes.string,
-		image: PropTypes.string,
-		id: PropTypes.string,
-	}),
-};
+// HeroCard.propTypes = {
+// 	hero: PropTypes.shape({
+// 		name: PropTypes.string,
+// 		image: PropTypes.string,
+// 		id: PropTypes.string,
+// 	}),
+// };
 
-HeroCard.defaultProps = {
-	hero: {
-		name: '',
-		image: '',
-		id: '',
-	},
-};
+// HeroCard.defaultProps = {
+// 	hero: {
+// 		name: '',
+// 		image: '',
+// 		id: '',
+// 	},
+// };
 export default HeroCard;

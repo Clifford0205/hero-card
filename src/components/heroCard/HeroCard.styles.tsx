@@ -51,4 +51,4 @@ export const HeroCardImage = styled(CardMedia, {
 	[theme.breakpoints.down('sm')]: {
 		maxWidth: '150px',
 	},
-}));
+})) as typeof CardMedia;

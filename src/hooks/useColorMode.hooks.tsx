@@ -5,8 +5,15 @@ import { PaletteMode } from '@mui/material';
 
 const { customColors } = themeSettings('dark');
 
+declare module '@mui/material/Typography' {
+	interface TypographyPropsVariantOverrides {
+		cardTitle: true;
+	}
+}
+
 declare module '@mui/material/styles' {
 	type Colors = typeof customColors;
+
 	interface Theme {
 		customColors: Colors;
 	}

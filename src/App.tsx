@@ -8,7 +8,6 @@ import HerosContainer from 'SRC/routes/Heros/HerosContainer.component';
 import ColorModeContext from 'CONTEXTS/colorMode.context';
 import useColorMode from 'HOOKS/useColorMode.hooks';
 import { ToastProvider } from 'CONTEXTS/toast.context';
-import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 
 import './App.css';
 
