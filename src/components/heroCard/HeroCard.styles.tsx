@@ -5,9 +5,13 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 
+interface HeroCardContainerProps {
+	isActive?: boolean | undefined;
+}
+
 export const HeroCardContainer = styled(Card, {
 	shouldForwardProp: isStyledPropsValid,
-})(({ theme, isActive }) => ({
+})<HeroCardContainerProps>(({ theme, isActive }) => ({
 	...(isActive && {
 		backgroundColor: theme.customColors.redAccent[900],
 		boxShadow:
