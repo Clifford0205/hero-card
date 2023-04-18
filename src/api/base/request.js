@@ -5,7 +5,7 @@ export const debounceErrorAlert = debounce(() => {
 	alert('伺服器連線異常');
 }, 500);
 
-const baseURL = 'https://hahow-recruit.herokuapp.com/heroes';
+const baseURL = '/heroes';
 
 let apiStatus = {};
 
@@ -19,7 +19,7 @@ export default ({ method, url, config = {} }) => {
 	set(apiStatus, url, true);
 
 	let defaultConfig = {
-		baseURL,
+		// baseURL,
 		method,
 		url,
 	};
