@@ -1,4 +1,6 @@
-export const tokens = (mode) => ({
+import { PaletteMode } from '@mui/material';
+
+export const tokens = (mode: PaletteMode) => ({
 	...(mode === 'dark'
 		? {
 				grey: {
@@ -125,9 +127,13 @@ export const tokens = (mode) => ({
 });
 
 // mui theme settings
-export const themeSettings = (mode) => {
+export const themeSettings = (mode: PaletteMode) => {
 	const colors = tokens(mode);
 	return {
+		// status: {
+		// 	danger: 'red',
+		// },
+
 		breakpoints: {
 			values: {
 				xs: 0,
